@@ -16,7 +16,7 @@ function App() {
   const [age, setAge] = useState("");
 
   const createUser = () => {
-    Axios.post("https://correct-mern-exampke.onrender.com/createUser", {
+    Axios.post("https://correct-mern-example-server.onrender.com/createUser", {
       name,
       username,
       age,
@@ -32,7 +32,7 @@ function App() {
   const loadUsers = async () => {
     try {
       const response = await Axios.get(
-        "https://correct-mern-exampke.onrender.com/getUser"
+        "https://correct-mern-example-server.onrender.com/getUser"
       );
       setUsers(response.data as User[]);
     } catch (err) {
@@ -42,7 +42,7 @@ function App() {
 
   const deleteUser = async (userId: any) => {
     await Axios.delete(
-      `https://correct-mern-exampke.onrender.com/deleteUser/${userId}`
+      `https://correct-mern-example-server.onrender.com/deleteUser/${userId}`
     ).then((response) => {
       if (response.status === 200) {
         setUsers(users.filter((user) => user._id !== userId));
@@ -52,7 +52,7 @@ function App() {
   };
 
   useEffect(() => {
-    Axios.get("https://correct-mern-exampke.onrender.com/getUser").then(
+    Axios.get("https://correct-mern-example-server.onrender.com/getUser").then(
       (response) => {
         setUsers(response.data as User[]);
       }
