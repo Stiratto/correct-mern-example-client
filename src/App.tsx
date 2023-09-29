@@ -98,10 +98,10 @@ function App() {
       </div>
 
       <div className="users-display">
-        {users.map((user) => {
-          return (
-            <div className="user-layout">
-              <h1 className="">Name: {user.name}</h1>
+        {Array.isArray(users) ? (
+          users.map((user) => (
+            <div className="user-layout" key={user._id}>
+              <h1>Name: {user.name}</h1>
               <h1>Age: {user.age}</h1>
               <h1>Username: {user.username}</h1>
               <button
@@ -112,8 +112,10 @@ function App() {
                 X
               </button>
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <p>Loading users...</p>
+        )}
       </div>
     </div>
   );
