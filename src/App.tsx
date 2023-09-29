@@ -98,7 +98,7 @@ function App() {
       </div>
 
       <div className="users-display">
-        {Array.isArray(users) ? (
+        {users.length > 0 ? (
           users.map((user) => (
             <div className="user-layout" key={user._id}>
               <h1>Name: {user.name}</h1>
@@ -113,6 +113,8 @@ function App() {
               </button>
             </div>
           ))
+        ) : users.length === 0 ? (
+          <p>No users found. Create a user to see the list.</p>
         ) : (
           <p>Loading users...</p>
         )}
