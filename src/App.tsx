@@ -16,7 +16,7 @@ function App() {
   const [age, setAge] = useState("");
 
   const createUser = () => {
-    Axios.post("http://localhost:4000/createUser", {
+    Axios.post("https://correct-mern-exampke.onrender.com/createUser", {
       name,
       username,
       age,
@@ -31,7 +31,9 @@ function App() {
 
   const loadUsers = async () => {
     try {
-      const response = await Axios.get("http://localhost:4000/getUser");
+      const response = await Axios.get(
+        "https://correct-mern-exampke.onrender.com/getUser"
+      );
       setUsers(response.data as User[]);
     } catch (err) {
       console.error("Error al cargar la lista de usuarios: ");
@@ -39,20 +41,22 @@ function App() {
   };
 
   const deleteUser = async (userId: any) => {
-    await Axios.delete(`http://localhost:4000/deleteUser/${userId}`).then(
-      (response) => {
-        if (response.status === 200) {
-          setUsers(users.filter((user) => user._id !== userId));
-        }
-        loadUsers();
+    await Axios.delete(
+      `https://correct-mern-exampke.onrender.com/deleteUser/${userId}`
+    ).then((response) => {
+      if (response.status === 200) {
+        setUsers(users.filter((user) => user._id !== userId));
       }
-    );
+      loadUsers();
+    });
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:4000/getUser").then((response) => {
-      setUsers(response.data as User[]);
-    });
+    Axios.get("https://correct-mern-exampke.onrender.com/getUser").then(
+      (response) => {
+        setUsers(response.data as User[]);
+      }
+    );
   }, []);
 
   return (
